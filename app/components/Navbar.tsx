@@ -204,7 +204,8 @@ return (
               className="hidden lg:flex items-center leading-none"
             >
               <Image
-                src="/logo_garlo.png"
+                src="/logo_mat.png"
+                alt= "logo"
                 width={190}
                 height={60}
                 priority
@@ -220,7 +221,7 @@ return (
               className="pointer-events-auto flex flex-col items-center leading-none"
             >
               <Image
-                src="/logo_garlo.png"
+                src="/logo_mat.png"
                 alt="Art Design MAKR"
                 width={180}
                 height={62}
@@ -430,7 +431,7 @@ return (
                 className="font-bold text-base"
                 style={{ color: "#ffffff", letterSpacing: "0.08em" }}
               >
-                Garlo
+                Maturin Store
               </span>
               <button
                 onClick={() => setMobileOpen(false)}

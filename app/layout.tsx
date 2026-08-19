@@ -17,9 +17,9 @@ export const revalidate = 1800;
 // Cambiar cuando tengas el dominio definitivo
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://garloec.com";
+  "https://maturinstore.com";
 
-const SITE_NAME = "Garloec | Ropa, Calzado y Accesorios Ecuador";
+const SITE_NAME = "Maturin Store | Ropa Deportiva y Fitness Ecuador";
 
 const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
@@ -30,26 +30,24 @@ const sourceSerif4 = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Garloec | Fabricantes de Ropa, Calzado y Accesorios en Ecuador",
-    template: "%s | Garloec",
+    default: "Maturin Store | Ropa Deportiva y Fitness en Ecuador",
+    template: "%s | Maturin Store",
   },
 
   description:
-    "La fábrica, marca y tienda de ropa más bacana del Ecuador. Ropa, calzado y accesorios con tiendas en Ambato y Esmeraldas, y envíos a todo el país.",
+    "Más de 5 años de experiencia en ropa deportiva. Tienda fitness GymOufit con tienda física en Guayaquil y envíos a todo Ecuador.",
 
   keywords: [
-    "ropa Ecuador",
-    "fábrica de ropa Ecuador",
-    "calzado Ecuador",
-    "accesorios Ecuador",
-    "ropa Ambato",
-    "ropa Esmeraldas",
-    "tienda de ropa Ecuador",
-    "Garloec",
-    "moda ecuatoriana",
-    "ropa nacional Ecuador",
-    "zapatos Ecuador",
-    "ropa al por mayor Ecuador",
+    "ropa deportiva Ecuador",
+    "ropa fitness Ecuador",
+    "tienda deportiva Guayaquil",
+    "GymOufit",
+    "Maturin Store",
+    "ropa gym Ecuador",
+    "leggings Ecuador",
+    "conjuntos deportivos Ecuador",
+    "ropa entrenamiento Ecuador",
+    "tienda fitness Guayaquil",
   ],
 
   creator: SITE_NAME,
@@ -72,17 +70,17 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
 
-    title: "Garloec | Ropa, Calzado y Accesorios",
+    title: "Maturin Store | Ropa Deportiva y Fitness",
 
     description:
-      "La fábrica, marca y tienda de ropa más bacana del Ecuador. Tiendas en Ambato y Esmeraldas, con envíos a todo el país.",
+      "Más de 5 años de experiencia en ropa deportiva. Tienda física en Guayaquil, con envíos a todo Ecuador.",
 
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Garloec - Ropa, calzado y accesorios",
+        alt: "Maturin Store - Ropa deportiva y fitness",
       },
     ],
   },
@@ -90,10 +88,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Garloec",
+    title: "Maturin Store",
 
     description:
-      "La fábrica, marca y tienda de ropa más bacana del Ecuador. Tiendas en Ambato y Esmeraldas.",
+      "Ropa deportiva y fitness. Tienda física en Guayaquil, envíos a todo Ecuador.",
 
     images: [`${SITE_URL}/twitter-image.jpg`],
   },
@@ -125,7 +123,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
   },
 
-  category: "Ropa y Accesorios",
+  category: "Ropa Deportiva y Fitness",
 };
 
 export const viewport: Viewport = {
@@ -143,7 +141,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={sourceSerif4.variable}>
       <head>
-        {/* Google Analytics */}
+        {/* Google Analytics - REEMPLAZAR con el ID de Maturin Store */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-K1Q0MYDSKF"
