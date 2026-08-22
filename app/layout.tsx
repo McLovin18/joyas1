@@ -17,9 +17,9 @@ export const revalidate = 1800;
 // Cambiar cuando tengas el dominio definitivo
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://maturinstore.com";
+  "https://caceresmorales.com";
 
-const SITE_NAME = "Maturin Store | Ropa Deportiva y Fitness Ecuador";
+const SITE_NAME = "Caceres Morales | Comercial e Industrial Ecuador";
 
 const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
@@ -30,24 +30,22 @@ const sourceSerif4 = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Maturin Store | Ropa Deportiva y Fitness en Ecuador",
-    template: "%s | Maturin Store",
+    default: "Caceres Morales | Productos Comerciales e Industriales",
+    template: "%s | Caceres Morales",
   },
 
   description:
-    "Más de 5 años de experiencia en ropa deportiva. Tienda fitness GymOufit con tienda física en Guayaquil y envíos a todo Ecuador.",
+    "Caceres Morales, tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
 
   keywords: [
-    "ropa deportiva Ecuador",
-    "ropa fitness Ecuador",
-    "tienda deportiva Guayaquil",
-    "GymOufit",
-    "Maturin Store",
-    "ropa gym Ecuador",
-    "leggings Ecuador",
-    "conjuntos deportivos Ecuador",
-    "ropa entrenamiento Ecuador",
-    "tienda fitness Guayaquil",
+    "productos industriales Ecuador",
+    "tienda comercial Ecuador",
+    "Caceres Morales",
+    "tienda online Ecuador",
+    "envíos internacionales Ecuador",
+    "productos industriales",
+    "comercio online Ecuador",
+    "grupo caceres morales",
   ],
 
   creator: SITE_NAME,
@@ -70,17 +68,17 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
 
-    title: "Maturin Store | Ropa Deportiva y Fitness",
+    title: "Caceres Morales | Comercial e Industrial",
 
     description:
-      "Más de 5 años de experiencia en ropa deportiva. Tienda física en Guayaquil, con envíos a todo Ecuador.",
+      "Caceres Morales, tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
 
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Maturin Store - Ropa deportiva y fitness",
+        alt: "Caceres Morales - Comercial e Industrial",
       },
     ],
   },
@@ -88,10 +86,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Maturin Store",
+    title: "Caceres Morales",
 
     description:
-      "Ropa deportiva y fitness. Tienda física en Guayaquil, envíos a todo Ecuador.",
+      "Tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
 
     images: [`${SITE_URL}/twitter-image.jpg`],
   },
@@ -123,7 +121,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
   },
 
-  category: "Ropa Deportiva y Fitness",
+  category: "Comercial e Industrial",
 };
 
 export const viewport: Viewport = {
@@ -141,7 +139,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={sourceSerif4.variable}>
       <head>
-        {/* Google Analytics - REEMPLAZAR con el ID de Maturin Store */}
+        {/* Google Analytics - REEMPLAZAR con el ID de Caceres Morales */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-K1Q0MYDSKF"
