@@ -18,7 +18,7 @@ export function Loading3DIcon() {
 
       {/* Texto */}
       <p className="mt-5 text-sm text-[var(--textSecondary)] font-medium">
-        Cargando contenido de Grupo Caceres Morales
+        Cargando contenido de DarkHunter Ec
       </p>
 
     </div>

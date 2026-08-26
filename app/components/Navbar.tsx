@@ -202,14 +202,9 @@ return (
               href={user ? "/admin" : "/"}
               className="hidden lg:flex items-center leading-none"
             >
-              <Image
-                src="/logo_001.png"
-                alt= "logo"
-                width={190}
-                height={60}
-                priority
-                style={{ height:"65px", width: "auto"}}
-              />
+              <span className="font-heading font-bold tracking-tight whitespace-nowrap text-3xl sm:text-4xl">
+                DarkHunter Ec
+              </span>
             </a>
           </div>
 
@@ -219,14 +214,7 @@ return (
               href={user ? "/admin" : "/"}
               className="pointer-events-auto flex flex-col items-center leading-none"
             >
-              <Image
-                src="/logo_001.png"
-                alt="Art Design MAKR"
-                width={180}
-                height={62}
-                priority
-                style={{ height: "65px",width: "auto"}}
-              />
+              <span>Dark Hunter</span>
             </a>
           </div>
 

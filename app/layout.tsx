@@ -19,7 +19,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
   "https://caceresmorales.com";
 
-const SITE_NAME = "Caceres Morales | Comercial e Industrial Ecuador";
+const SITE_NAME = "DarkHunter Ec | El placer de un buen trag";
 
 const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
@@ -30,22 +30,16 @@ const sourceSerif4 = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Caceres Morales | Productos Comerciales e Industriales",
-    template: "%s | Caceres Morales",
+    default: "DarkHunter Ec. El placer de un buen trago.",
+    template: "%s | DarkHunter Ec.",
   },
 
   description:
-    "Caceres Morales, tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
+    "DarkHunter Ec. El placer de un buen trago.",
 
   keywords: [
-    "productos industriales Ecuador",
-    "tienda comercial Ecuador",
-    "Caceres Morales",
-    "tienda online Ecuador",
-    "envíos internacionales Ecuador",
-    "productos industriales",
-    "comercio online Ecuador",
-    "grupo caceres morales",
+    "DarkHunter EC",
+
   ],
 
   creator: SITE_NAME,
@@ -68,10 +62,10 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
 
-    title: "Caceres Morales | Comercial e Industrial",
+    title: "DarkHunter Ec | El placer de un buen trago.",
 
     description:
-      "Caceres Morales, tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
+      "DarkHunter Ec. El placer de un buen trago..",
 
     images: [
       {
@@ -86,10 +80,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Caceres Morales",
+    title: "DarkHunter Ec",
 
     description:
-      "Tienda comercial e industrial. Aceptamos tarjetas de crédito, envíos a todo el mundo.",
+      "El placer de un buen trago.",
 
     images: [`${SITE_URL}/twitter-image.jpg`],
   },

@@ -26,12 +26,12 @@ const IconWhatsApp = () => (
 );
 
 const socialLinks = [
-  { href: "https://www.instagram.com/grupo.caceres.morales/", label: "Instagram", Icon: IconInstagram },
+  { href: "https://www.instagram.com/darkhunter.ec/", label: "Instagram", Icon: IconInstagram },
 ];
 
 // 👉 Información del negocio
-const WHATSAPP_NUMBER = "593995110976"; // solo números, con código de país, sin '+' ni espacios
-const WHATSAPP_DISPLAY = "+593 99 511 0976"; // como se muestra al usuario
+const WHATSAPP_NUMBER = "593994669491"; // solo números, con código de país, sin '+' ni espacios
+const WHATSAPP_DISPLAY = "+593 99 466 9491"; // como se muestra al usuario
 
 const Footer: React.FC = () => {
   const pathname = usePathname();
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
             {/* Columna 1: Información de la tienda */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
               <span className="text-base font-bold tracking-wide text-white">
-                Caceres Morales
+                Darkhunter | Whiskey &amp; Agave
               </span>
 
               {instagramEnabled && instagramFollowers !== null && instagramFollowers > 0 && (
@@ -92,11 +92,11 @@ const Footer: React.FC = () => {
               )}
 
               <div className="text-xs text-white/60 mt-1 max-w-[220px]">
-                <p>Comercial e Industrial</p>
-                <p>Conectamos a las personas con un simple producto</p>
+                <p>Special Reserve From the Ecuadorian Coast</p>
+                <p>El placer de un buen trago</p>
                 <p className="flex items-center gap-1 justify-center md:justify-start mt-0.5">
                   <IconLocation />
-                  Envíos a todo el mundo
+                  Costa Ecuatoriana
                 </p>
               </div>
             </div>
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                     <li key={label}>
                       <a
                         href={href}
-                        className="flex items-center justify-center w-9 h-9 rounded-full border border-white/15 text-white transition-colors hover:bg-[#1E40AF] hover:border-[#1E40AF]"
+                        className="flex items-center justify-center w-9 h-9 rounded-full border border-white/15 text-white transition-colors hover:bg-[#B8722C] hover:border-[#B8722C]"
                         target="_blank"
                         rel="noreferrer"
                         title={label}
@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 text-xl text-white/70 hover:text-[#1E40AF] transition-colors"
+                className="flex items-center gap-2 text-xl text-white/70 hover:text-[#B8722C] transition-colors"
                 onClick={() => trackLinkClick().catch(console.error)}
               >
                 <span>{WHATSAPP_DISPLAY}</span>
@@ -160,11 +160,11 @@ const Footer: React.FC = () => {
         {/* Copyright row */}
         <div className={styles.ftCopyRow}>
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} Caceres Morales. Todos los derechos reservados.
+            © {new Date().getFullYear()} Darkhunter. Todos los derechos reservados.
           </p>
           <div className={styles.ftCopyRight}>
             <div className="flex items-center gap-1.5 text-xs text-white/60">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#1E40AF]" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#B8722C]" />
               Hecho en Ecuador
             </div>
 
@@ -172,7 +172,7 @@ const Footer: React.FC = () => {
               href="https://www.instagram.com/hector.cobena/"
               target="_blank"
               rel="noreferrer"
-              className="text-xs text-white/50 hover:text-[#1E40AF] transition-colors"
+              className="text-xs text-white/50 hover:text-[#B8722C] transition-colors"
               onClick={() => trackLinkClick().catch(console.error)}
             >
               Desarrollado por Héctor Cobeña
