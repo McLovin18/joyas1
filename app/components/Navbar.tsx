@@ -214,8 +214,9 @@ return (
               href={user ? "/admin" : "/"}
               className="pointer-events-auto flex flex-col items-center leading-none"
             >
-              <span>Dark Hunter</span>
-            </a>
+              <span className="font-heading font-bold tracking-tight whitespace-nowrap text-2xl sm:text-4xl">
+                DarkHunter 
+              </span>            </a>
           </div>
 
           {/* ── Derecha: búsqueda, carrito, usuario ── */}
