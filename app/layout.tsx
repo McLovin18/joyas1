@@ -17,9 +17,9 @@ export const revalidate = 1800;
 // Cambiar cuando tengas el dominio definitivo
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://caceresmorales.com";
+  "https://toskamodaviva.com";
 
-const SITE_NAME = "DarkHunter Ec | El placer de un buen trag";
+const SITE_NAME = "Toska | Moda y Alta Costura Ecuatoriana";
 
 const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
@@ -30,16 +30,19 @@ const sourceSerif4 = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "DarkHunter Ec. El placer de un buen trago.",
-    template: "%s | DarkHunter Ec.",
+    default: "Toska | Moda y Alta Costura Ecuatoriana",
+    template: "%s | Toska",
   },
 
   description:
-    "DarkHunter Ec. El placer de un buen trago.",
+    "Toska transforma obras de arte en prendas únicas. Alta costura, bodas destino y moda ready to wear, con confección a medida (Plus Size & Tall).",
 
   keywords: [
-    "DarkHunter EC",
-
+    "alta costura Ecuador",
+    "vestidos de novia Quito",
+    "bodas destino Ecuador",
+    "moda de autor ecuatoriana",
+    "confección a medida",
   ],
 
   creator: SITE_NAME,
@@ -62,17 +65,17 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
 
-    title: "DarkHunter Ec | El placer de un buen trago.",
+    title: "Toska | Moda y Alta Costura Ecuatoriana",
 
     description:
-      "DarkHunter Ec. El placer de un buen trago..",
+      "Toska transforma obras de arte en prendas únicas. Alta costura, bodas destino y moda ready to wear, con confección a medida (Plus Size & Tall).",
 
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Caceres Morales - Comercial e Industrial",
+        alt: "Toska | Moda y Alta Costura Ecuatoriana",
       },
     ],
   },
@@ -80,10 +83,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "DarkHunter Ec",
+    title: "Toska",
 
     description:
-      "El placer de un buen trago.",
+      "Alta costura, bodas destino y moda ready to wear. Confección a medida (Plus Size & Tall).",
 
     images: [`${SITE_URL}/twitter-image.jpg`],
   },
@@ -115,7 +118,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
   },
 
-  category: "Comercial e Industrial",
+  category: "moda y alta costura",
 };
 
 export const viewport: Viewport = {
@@ -133,7 +136,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={sourceSerif4.variable}>
       <head>
-        {/* Google Analytics - REEMPLAZAR con el ID de Caceres Morales */}
+        {/* Google Analytics - REEMPLAZAR con el ID de Toska */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-K1Q0MYDSKF"
