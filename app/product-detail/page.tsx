@@ -433,7 +433,7 @@ return (
           {/* Imagen principal */}
           <div className="relative aspect-square rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10">
             {hasDiscount && (
-              <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              <span className="absolute top-3 left-3 z-10 bg-[#7B9BC0] text-white text-xs font-bold px-2 py-0.5 rounded-full">
                 -{discount}%
               </span>
             )}
@@ -451,7 +451,7 @@ return (
             {producto.imagenes.length > 1 && imgIdx > 0 && (
               <button
                 onClick={() => setImgIdx(imgIdx - 1)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#141313] border border-white/15 shadow flex items-center justify-center hover:scale-105 hover:border-red-500 transition-all"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#141313] border border-white/15 shadow flex items-center justify-center hover:scale-105 hover:border-[#7B9BC0] transition-all"
               >
                 <span className="material-icons-round text-white/70 text-lg">chevron_left</span>
               </button>
@@ -459,7 +459,7 @@ return (
             {producto.imagenes.length > 1 && imgIdx < producto.imagenes.length - 1 && (
               <button
                 onClick={() => setImgIdx(imgIdx + 1)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#141313] border border-white/15 shadow flex items-center justify-center hover:scale-105 hover:border-red-500 transition-all"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#141313] border border-white/15 shadow flex items-center justify-center hover:scale-105 hover:border-[#7B9BC0] transition-all"
               >
                 <span className="material-icons-round text-white/70 text-lg">chevron_right</span>
               </button>
@@ -475,7 +475,7 @@ return (
                     onClick={() => setImgIdx(idx)}
                     className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all bg-black/30 backdrop-blur-sm ${
                       imgIdx === idx
-                        ? "border-red-500 scale-105"
+                        ? "border-[#7B9BC0] scale-105"
                         : "border-transparent opacity-50 hover:opacity-80"
                     }`}
                   >
@@ -496,7 +496,7 @@ return (
                     onClick={() => handleTabToggle("caracteristicas")}
                     className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
                       activeTab === "caracteristicas"
-                            ? "bg-red-500 text-white"
+                            ? "bg-[#7B9BC0] text-white"
                             : ": bg-black/30 backdrop-blur-sm text-white hover:bg-white/10"
                     }`}
                   >
@@ -510,7 +510,7 @@ return (
                     hasCaracteristicas ? "border-l border-white/10" : ""
                   } ${
                     activeTab === "resenas"
-                            ? "bg-red-500 text-white"
+                            ? "bg-[#7B9BC0] text-white"
                             : "bg-black/30 backdrop-blur-sm text-white hover:bg-white/10"
                   }`}
                 >
@@ -537,7 +537,7 @@ return (
                     <ul className="space-y-2">
                       {producto.caracteristicas.map((c, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-sm text-white/80">
-                          <span className="w-1 h-1 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+                          <span className="w-1 h-1 rounded-full bg-[#7B9BC0] mt-2 flex-shrink-0" />
                           <Markdown>{c}</Markdown>
                         </li>
                       ))}
@@ -578,7 +578,7 @@ return (
             {reviews.length > 0 && (
               <div className="flex items-center gap-1.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <span key={i} className={`text-base ${i < Math.round(avgRating) ? "text-red-500" : "text-white/10"}`}>★</span>
+                  <span key={i} className={`text-base ${i < Math.round(avgRating) ? "text-[#7B9BC0]" : "text-white/10"}`}>★</span>
                 ))}
                 <span className="text-xs text-white/40 ml-1">
                   {avgRating.toFixed(1)} ({reviews.length})
@@ -600,7 +600,7 @@ return (
                 </span>
 
                 {hasDiscount && (
-                  <span className="text-xs font-semibold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold text-[#7B9BC0] bg-red-500/10 px-2 py-0.5 rounded-full">
                     {discount}% OFF
                   </span>
                 )}
@@ -614,7 +614,7 @@ return (
                   <p>El precio base corresponde a la medida estandar de 150x100 cm. Escribe una medida como 150x100 cm para recalcular.</p>
                 )}
                 {measurePricing?.error && (
-                  <p className="text-red-500">{measurePricing.error}</p>
+                  <p className="text-[#7B9BC0]">{measurePricing.error}</p>
                 )}
                 {measurePricing?.isValid && (
                   <p className="text-emerald-400">
@@ -671,7 +671,7 @@ return (
                   `,
                 }}
               >
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-red-400">
+                <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#7B9BC0]">
                   <span className="material-icons-round text-base">auto_awesome</span>
                   Personalización
                 </h3>
@@ -692,10 +692,10 @@ return (
                             onChange={(e) => setPersonalizacionValues(prev => ({ ...prev, [campo.id]: e.target.value }))}
                             placeholder="150x100 cm"
                             className={`w-full rounded-xl border-none px-4 py-3.5 text-base outline-none focus:ring-2 focus:ring-amber-300 bg-white text-black placeholder:text-black/45 ${
-                              measurePricing?.error ? "ring-2 ring-red-400" : ""
+                              measurePricing?.error ? "ring-2 ring-[#7B9BC0]" : ""
                             }`}
                           />
-                          <p className={`mt-1.5 text-xs ${measurePricing?.error ? "text-red-400" : "text-white/55"}`}>
+                          <p className={`mt-1.5 text-xs ${measurePricing?.error ? "text-[#7B9BC0]" : "text-white/55"}`}>
                             {measurePricing?.error || "Formato requerido: ancho x alto. Ejemplo: 150x100 cm."}
                           </p>
                         </>
@@ -705,7 +705,7 @@ return (
                           value={personalizacionValues[campo.id] || ""}
                           onChange={(e) => setPersonalizacionValues(prev => ({ ...prev, [campo.id]: e.target.value }))}
                           placeholder={`Ingresa ${campo.nombre.toLowerCase()}`}
-                          className="w-full rounded-xl border-none px-4 py-3.5 text-base outline-none focus:ring-2 focus:ring-red-500 bg-white text-black placeholder:text-black/45"
+                          className="w-full rounded-xl border-none px-4 py-3.5 text-base outline-none focus:ring-2 focus:ring-[#7B9BC0] bg-white text-black placeholder:text-black/45"
                         />
                       ) : campo.tipo === "numero" ? (
                         <input
@@ -713,7 +713,7 @@ return (
                           value={personalizacionValues[campo.id] || ""}
                           onChange={(e) => setPersonalizacionValues(prev => ({ ...prev, [campo.id]: e.target.value }))}
                           placeholder={`Ingresa ${campo.nombre.toLowerCase()}`}
-                          className="w-full rounded-xl border-none px-4 py-3.5 text-base outline-none focus:ring-2 focus:ring-red-500 bg-white text-black placeholder:text-black/45"
+                          className="w-full rounded-xl border-none px-4 py-3.5 text-base outline-none focus:ring-2 focus:ring-[#7B9BC0] bg-white text-black placeholder:text-black/45"
                         />
                       ) : campo.tipo === "fecha" ? (
                         <input
@@ -753,7 +753,7 @@ return (
                       type="checkbox"
                       checked={altoRelieve}
                       onChange={(e) => setAltoRelieve(e.target.checked)}
-                      className="w-4 h-4 accent-red-500"
+                      className="w-4 h-4 accent-[#7B9BC0]"
                     />
                     desea agregar alto relieve al cuadro?
                   </label>
@@ -770,8 +770,8 @@ return (
                   maxCantidad === 0 || (hasVariations && variationAttributeIds.length > 0 && !variationAttributeIds.every(attrId => selectedVariations[attrId]))
                     ? "bg-black text-white/20 border-white/10 cursor-not-allowed opacity-50 shadow-none"
                     : inCart
-                      ? "bg-red-500 text-white border-red-500 hover:bg-red-500 hover:shadow-md"
-                      : "bg-red-500 text-white border-red-500 hover:bg-red-600 hover:shadow-md"
+                      ? "bg-[#7B9BC0] text-white border-[#7B9BC0] hover:bg-[#7B9BC0] hover:shadow-md"
+                      : "bg-[#7B9BC0] text-white border-[#7B9BC0] hover:bg-[#7B9BC0] hover:shadow-md"
                 }`}
               >
                 <span className="material-icons-round text-[18px]">
@@ -785,8 +785,8 @@ return (
                   onClick={handleFav}
                   className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${
                     isFav
-                      ? "bg-red-500 text-white shadow"
-                      : "bg-black border border-white/15 text-white hover:border-red-500 hover:text-red-600 hover:shadow-sm"
+                      ? "bg-[#7B9BC0] text-white shadow"
+                      : "bg-black border border-white/15 text-white hover:border-[#7B9BC0] hover:text-[#7B9BC0] hover:shadow-sm"
                   }`}
                   title={isFav ? "Quitar de favoritos" : "Agregar a favoritos"}
                 >
@@ -810,7 +810,7 @@ return (
                 </span>
 
                 {hasDiscount && (
-                  <span className="text-xs font-semibold text-red-500 bg-red-500/10 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold text-[#7B9BC0] bg-red-500/10 px-2 py-0.5 rounded-full">
                     {discount}% OFF
                   </span>
                 )}
@@ -825,7 +825,7 @@ return (
                   <ul className="space-y-2">
                     {descItems.map((item, idx) => (
                       <li key={idx} className="flex gap-2 text-sm text-white/80 leading-relaxed">
-                        <span className="text-red-500 flex-shrink-0 mt-0.5">›</span>
+                        <span className="text-[#7B9BC0] flex-shrink-0 mt-0.5">›</span>
                         <span>
                           {item.text}
                           {item.sub.length > 0 && (
@@ -855,7 +855,7 @@ return (
                 <h1 className="text-white">Descripción:</h1>
                 {descItems.map((item, idx) => (
                   <li key={idx} className="flex gap-2 text-sm text-white/80 leading-relaxed">
-                    <span className="text-red-500 flex-shrink-0 mt-0.5">›</span>
+                    <span className="text-[#7B9BC0] flex-shrink-0 mt-0.5">›</span>
                     <span>
                       {item.text}
                       {item.sub.length > 0 && (
@@ -887,7 +887,7 @@ return (
                 onClick={() => handleTabToggle("caracteristicas")}
                 className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
                   activeTab === "caracteristicas"
-                    ? "bg-red-500 text-white"
+                    ? "bg-[#7B9BC0] text-white"
                     : "bg-black text-white/70 hover:bg-white/5"
                 }`}
               >
@@ -901,7 +901,7 @@ return (
                 hasCaracteristicas ? "border-l border-white/10" : ""
               } ${
                 activeTab === "resenas"
-                  ? "bg-red-500 text-white"
+                  ? "bg-[#7B9BC0] text-white"
                   : "bg-black text-white/70 hover:bg-white/5"
               }`}
             >
@@ -925,7 +925,7 @@ return (
                 <ul className="space-y-2">
                   {producto.caracteristicas.map((c, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-sm text-white/80">
-                      <span className="w-1 h-1 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-[#7B9BC0] mt-2 flex-shrink-0" />
                       <Markdown>{c}</Markdown>
                     </li>
                   ))}
@@ -964,7 +964,7 @@ function ReviewsSection({
           <div>
             <div className="flex gap-0.5 mb-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i} className={`text-lg ${i < Math.round(avgRating) ? "text-red-600" : "text-white/10"}`}>★</span>
+                <span key={i} className={`text-lg ${i < Math.round(avgRating) ? "text-[#7B9BC0]" : "text-white/10"}`}>★</span>
               ))}
             </div>
             <p className="text-xs text-white/40">
@@ -985,7 +985,7 @@ function ReviewsSection({
                 <span className="text-sm font-semibold text-white/90">{r.userName}</span>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <span key={i} className={`text-sm ${i < r.rating ? "text-red-600" : "text-white/10"}`}>★</span>
+                    <span key={i} className={`text-sm ${i < r.rating ? "text-[#7B9BC0]" : "text-white/10"}`}>★</span>
                   ))}
                 </div>
                 <span className="text-xs text-white/30 ml-auto">
@@ -1022,7 +1022,7 @@ function ReviewsSection({
               <span key={i} onClick={() => setReviewRating(i + 1)} role="button"
                 aria-label={`Calificación ${i + 1}`}
                 className={`text-2xl cursor-pointer transition-transform hover:scale-110 select-none ${
-                  i < reviewRating ? "text-red-500" : "text-white/10"
+                  i < reviewRating ? "text-[#7B9BC0]" : "text-white/10"
                 }`}>★</span>
             ))}
           </div>
@@ -1036,12 +1036,12 @@ function ReviewsSection({
         </div>
 
         {reviewError && (
-          <p className="text-xs text-red-500">{reviewError}</p>
+          <p className="text-xs text-[#7B9BC0]">{reviewError}</p>
         )}
 
         <div className="flex items-center justify-between gap-4">
           <button type="submit" disabled={reviewLoading}
-            className="px-6 py-2.5 rounded-xl bg-red-500 border border-red-500 text-white text-sm font-bold hover:bg-red-500 hover:shadow-sm disabled:opacity-40 transition-all">
+            className="px-6 py-2.5 rounded-xl bg-[#7B9BC0] border border-[#7B9BC0] text-white text-sm font-bold hover:bg-[#7B9BC0] hover:shadow-sm disabled:opacity-40 transition-all">
             {reviewLoading ? "Enviando..." : "Publicar reseña"}
           </button>
         </div>

@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 const WhatsAppFloatingButton: React.FC = () => {
+  const { settings } = useSiteSettings();
+
   return (
     <>
       <style>{`
@@ -109,7 +112,7 @@ const WhatsAppFloatingButton: React.FC = () => {
       `}</style>
 
       <a
-        href="https://wa.me/593995312492"
+        href={`https://wa.me/${settings.whatsappNumber}`}
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp Marca Estilo"

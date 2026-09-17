@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+:root {
+  /* ============================================================
+     PALETA DE COLORES — Floristería
+     Fondo    #0A0A0A (negro, fijo por requerimiento del cliente)
+     Fern     #3A5A40  (verde botánico — hojas / tallos)
+     Terracota#8C4A3A  (acento floral apagado, sin caer en rosado)
+     Gold     #C9A227  (detalle premium — precios, líneas, hover)
+     Bone     #EDE7DA  (texto principal sobre negro)
+     Stone    #9C9488  (texto secundario)
+     Charcoal #1A1A1A  (superficies / cards sobre el negro puro)
+     ============================================================ */
+
+  /* --- Colores base de la paleta (para uso directo si se necesita) --- */
+  --color-black: black;
+  --color-fern: #3a5a40;
+  --color-terracota: #5e1919;
+  --color-gold: #5e1919;
+  --color-bone: #ede7da;
+  --color-stone: #5e1919;
+  --color-charcoal: #1a1a1a;
+
+  /* --- Variantes derivadas (hover / active) --- */
+  --color-fern-dark: #2a4230;       /* fern oscurecido, hover en botones verdes */
+  --color-terracota-dark: #411010;  /* terracota oscurecido, hover en acentos florales */
+  --color-gold-dark: #852323;       /* gold oscurecido, hover en botones dorados */
+  --color-bone-dark: #d9d0ba;       /* bone oscurecido, hover sobre superficies claras */
+  --color-gold-muted: #560f0f;      /* gold muy oscurecido/desaturado — fondo navbar/footer, no compite con el negro */
+  --color-gold-muted-hover: #661111; /* variante un poco más clara para hover/active sobre el navbar */
+
+  /* --- Semántica --- */
+/* --- Semántica --- */
+   --background: #000000;
+
+  --bg: black;
+  --bgSecondary: #ffffff;
+
+
+  --border: #d1d5db;
+
+  /* --- Colores de marca / acción --- */
+  --primary: var(--color-gold);
+  --primaryHover: var(--color-gold-dark);
+  --primaryForeground: var(--color-black);
+
+  --secondary: var(--color-fern);
+  --secondaryHover: var(--color-fern-dark);
+  --secondaryForeground: var(--color-bone);
+
+  --accent: var(--color-terracota);
+  --accentForeground: var(--color-bone);
+
+  --muted: var(--color-charcoal);
+  --mutedForeground: var(--color-stone);
+
+  --card: var(--color-white);
+  --cardForeground: var(--color-bone);
+
+  --galleryImgBg: var(--color-white);
+
+  /* --- Navbar / Footer (dorado oscurecido, no compite con el fondo negro) --- */
+  --navbarBg: var(--color-gold-muted);
+  --navbarBgHover: var(--color-gold-muted-hover);
+  --navbarText: var(--color-bone);
+  --navbarTextMuted: var(--color-gold);
+
+  --footerBg: var(--color-gold-muted);
+  --footerText: var(--color-bone);
+  --footerTextMuted: var(--color-stone);
+
+  /* --- Tipografía --- */
+  --font-body-family: "Open Sauce One", sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 700;
+
+  --font-heading-family: "Open Sauce One", sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 700;
+
+  --font-body-scale: 1.0;
+  --font-heading-scale: 1.15;
+
+  /* --- Tipografía exclusiva del navbar --- */
+  --font-navbar-body-family: "Open Sauce One", sans-serif;
+  --font-navbar-heading-family: "Hagrid Text", serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primaryForeground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondaryForeground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accentForeground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--mutedForeground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--cardForeground);
+  --color-border: var(--border);
+  --font-sans: var(--font-body-family);
+  --font-serif: var(--font-heading-family);
+  --font-mono: var(--font-body-family);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  font-size: calc(1rem * var(--font-body-scale));
+  overflow-x: hidden;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-heading-xl {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+}
+
+strong,
+b,
+.font-body-bold {
+  font-weight: var(--font-body-weight-bold);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Mantener la tipografía original en el navbar y todos sus elementos internos */
+nav, nav * {
+  font-family: var(--font-navbar-body-family);
+}
+
+nav .font-heading,
+nav h1,
+nav h2,
+nav h3,
+nav h4,
+nav h5,
+nav h6 {
+  font-family: var(--font-navbar-heading-family);
+}
+
+/* Animación 3D de rotación para skeletons */
+.skeleton-3d {
+  animation: skeleton-3d-rotate 1.2s cubic-bezier(0.4,0.2,0.2,1) infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes skeleton-3d-rotate {
+  0% {
+    transform: perspective(600px) rotateY(-8deg) scale(0.98);
+    opacity: 0.7;
+  }
+  50% {
+    transform: perspective(600px) rotateY(8deg) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(600px) rotateY(-8deg) scale(0.98);
+    opacity: 0.7;
+  }
+}
+
+@keyframes loadingSteps {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  33% {
+    clip-path: inset(0 66% 0 0);
+  }
+
+  66% {
+    clip-path: inset(0 33% 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-loadingSteps {
+  animation: loadingSteps 0.9s steps(4) infinite;
+}
+
+
+
+/* Evitar desbordamiento horizontal en móviles */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
+
+
+
+input,
+textarea,
+select {
+  color: #000;
+  background: #fff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}

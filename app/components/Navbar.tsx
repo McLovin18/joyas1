@@ -12,6 +12,7 @@ import {
 } from "../lib/categorias-db";
 import { obtenerProductos } from "../lib/productos-db";
 import { useUser } from "../context/UserContext";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 import { productMatches } from "../lib/search-utils";
 
 // ─────────────────────────────────────────────
@@ -40,6 +41,7 @@ export const Navbar = () => {
   const [openCatId, setOpenCatId] = useState<string | null>(null);
   const [openSubId, setOpenSubId] = useState<string | null>(null);
   const { user, carrito } = useUser();
+  const { settings } = useSiteSettings();
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   // Barra de búsqueda
@@ -204,7 +206,7 @@ return (
               className="hidden lg:flex items-center leading-none"
             >
               <Image
-                src="/loggo_tk.png"
+                src={settings.logoUrl || "/logo_mu.png"}
                 alt="logo"
                 width={190}
                 height={60}
@@ -221,8 +223,8 @@ return (
               className="pointer-events-auto flex flex-col items-center leading-none"
             >
               <Image
-                src="/loggo_tk.png"
-                alt="Art Design MAKR"
+                src={settings.logoUrl || "/logo_mu.png"}
+                alt="Logo"
                 width={180}
                 height={62}
                 priority
@@ -414,7 +416,7 @@ return (
       {mobileOpen && (
         <>
         <div
-          className="fixed inset-0 z-[99999] bg-black/70 backdrop-blur-sm mb-12"
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm mb-12"
           onClick={() => setMobileOpen(false)}
         >
           <div
@@ -427,12 +429,6 @@ return (
               className="flex items-center justify-between px-5 py-4 border-b"
               style={{ borderColor: BRAND.border }}
             >
-              <span
-                className="font-bold text-base"
-                style={{ color: "#ffffff", letterSpacing: "0.08em" }}
-              >
-                Toska
-              </span>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="p-1.5 rounded-xl transition-colors hover:bg-white/10"

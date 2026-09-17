@@ -49,6 +49,12 @@ export default function ConfigPage() {
         <WatermarkSettings />
       </div>
 
+      {/* Configuración General del Sitio */}
+      <div className="mt-12">
+        <h2 className="text-lg font-semibold mb-2">Información del Negocio</h2>
+        <BusinessInfoSettings />
+      </div>
+
       {/* Instagram */}
       <div className="mt-12">
         <h2 className="text-lg font-semibold mb-2">Instagram</h2>
@@ -429,6 +435,338 @@ function ChangePasswordForm() {
         <div className={`mt-2 text-sm ${message.startsWith("Error") ? "text-red-600" : "text-green-600"}`}>{message}</div>
       )}
     </form>
+  );
+}
+
+// Componente para configuración general del negocio
+function BusinessInfoSettings() {
+  const { settings } = useSiteSettings();
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [businessName, setBusinessName] = useState(settings.businessName || "");
+  const [phoneNumber, setPhoneNumber] = useState(settings.phoneNumber || "");
+  const [whatsappNumber, setWhatsappNumber] = useState(settings.whatsappNumber || "");
+  const [whatsappDisplay, setWhatsappDisplay] = useState(settings.whatsappDisplay || "");
+  const [instagramUrl, setInstagramUrl] = useState(settings.instagramUrl || "");
+  const [tiktokUrl, setTiktokUrl] = useState(settings.tiktokUrl || "");
+  const [facebookUrl, setFacebookUrl] = useState(settings.facebookUrl || "");
+  const [businessDescription, setBusinessDescription] = useState(settings.businessDescription || "");
+  const [businessAddress, setBusinessAddress] = useState(settings.businessAddress || "");
+  const [seoTitle, setSeoTitle] = useState(settings.seoTitle || "");
+  const [seoDescription, setSeoDescription] = useState(settings.seoDescription || "");
+  const [seoKeywords, setSeoKeywords] = useState(settings.seoKeywords || "");
+  const [seoOgImageFile, setSeoOgImageFile] = useState<File | null>(null);
+  const [seoOgImagePreview, setSeoOgImagePreview] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setBusinessName(settings.businessName || "");
+    setPhoneNumber(settings.phoneNumber || "");
+    setWhatsappNumber(settings.whatsappNumber || "");
+    setWhatsappDisplay(settings.whatsappDisplay || "");
+    setInstagramUrl(settings.instagramUrl || "");
+    setTiktokUrl(settings.tiktokUrl || "");
+    setFacebookUrl(settings.facebookUrl || "");
+    setBusinessDescription(settings.businessDescription || "");
+    setBusinessAddress(settings.businessAddress || "");
+    setSeoTitle(settings.seoTitle || "");
+    setSeoDescription(settings.seoDescription || "");
+    setSeoKeywords(settings.seoKeywords || "");
+  }, [settings]);
+
+  useEffect(() => {
+    if (!logoFile) {
+      setLogoPreview(null);
+      return;
+    }
+    const url = URL.createObjectURL(logoFile);
+    setLogoPreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [logoFile]);
+
+  useEffect(() => {
+    if (!seoOgImageFile) {
+      setSeoOgImagePreview(null);
+      return;
+    }
+    const url = URL.createObjectURL(seoOgImageFile);
+    setSeoOgImagePreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [seoOgImageFile]);
+
+  const handleSave = async () => {
+    setMessage("");
+    setLoading(true);
+    try {
+      let logoUrl = settings.logoUrl;
+      let seoOgImageUrl = settings.seoOgImage;
+      
+      if (logoFile) {
+        const path = `landing_page/logo/logo_${Date.now()}.${logoFile.name.split('.').pop()}`;
+        logoUrl = await uploadImageAndGetUrl(logoFile, path);
+      }
+
+      if (seoOgImageFile) {
+        const path = `landing_page/seo/og_${Date.now()}.${seoOgImageFile.name.split('.').pop()}`;
+        seoOgImageUrl = await uploadImageAndGetUrl(seoOgImageFile, path);
+      }
+
+      await setDoc(
+        doc(db, "landingPage", "main"),
+        {
+          logoUrl,
+          businessName,
+          phoneNumber,
+          whatsappNumber,
+          whatsappDisplay,
+          instagramUrl,
+          tiktokUrl,
+          facebookUrl,
+          businessDescription,
+          businessAddress,
+          seoTitle,
+          seoDescription,
+          seoKeywords,
+          seoOgImage: seoOgImageUrl,
+        },
+        { merge: true }
+      );
+      setMessage("Información del negocio guardada correctamente.");
+      setLogoFile(null);
+      setLogoPreview(null);
+      setSeoOgImageFile(null);
+      setSeoOgImagePreview(null);
+    } catch (e: any) {
+      setMessage("Error: " + (e?.message || "No se pudo guardar la información"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-slate-600">
+        Configura la información básica de tu negocio que aparecerá en todo el sitio.
+      </p>
+
+      {/* Logo */}
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3">
+        <label className="block">
+          <span className="block text-sm font-semibold text-slate-700 mb-2">Logo del negocio</span>
+          <input
+            type="file"
+            accept="image/*"
+            disabled={loading}
+            onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+            className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base file:mr-4 file:rounded-full file:border-0 file:bg-rose-500 file:px-4 file:py-2 file:text-white file:font-semibold disabled:opacity-60"
+          />
+        </label>
+
+        {(settings.logoUrl || logoPreview) && (
+          <div className="rounded-xl border border-slate-200 bg-white p-3">
+            <div className="text-xs font-semibold text-slate-600 mb-2">Vista previa</div>
+            <div className="relative w-44 h-44 rounded-xl overflow-hidden bg-slate-50 border border-slate-200">
+              <img 
+                src={logoPreview || settings.logoUrl} 
+                alt="Logo" 
+                className="w-full h-full object-contain p-3" 
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Campos de texto */}
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Nombre del negocio</label>
+          <input
+            type="text"
+            value={businessName}
+            onChange={(e) => setBusinessName(e.target.value)}
+            disabled={loading}
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Número de teléfono</label>
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            disabled={loading}
+            placeholder="+593 99 007 7959"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Número de WhatsApp (solo números, con código de país)</label>
+          <input
+            type="text"
+            value={whatsappNumber}
+            onChange={(e) => setWhatsappNumber(e.target.value)}
+            disabled={loading}
+            placeholder="593990077959"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">WhatsApp (como se muestra al usuario)</label>
+          <input
+            type="text"
+            value={whatsappDisplay}
+            onChange={(e) => setWhatsappDisplay(e.target.value)}
+            disabled={loading}
+            placeholder="+593 99 007 7959"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Instagram URL</label>
+          <input
+            type="url"
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            disabled={loading}
+            placeholder="https://www.instagram.com/tunegocio/"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">TikTok URL</label>
+          <input
+            type="url"
+            value={tiktokUrl}
+            onChange={(e) => setTiktokUrl(e.target.value)}
+            disabled={loading}
+            placeholder="https://www.tiktok.com/@tunegocio"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Facebook URL</label>
+          <input
+            type="url"
+            value={facebookUrl}
+            onChange={(e) => setFacebookUrl(e.target.value)}
+            disabled={loading}
+            placeholder="https://www.facebook.com/tunegocio"
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Descripción del negocio</label>
+          <textarea
+            value={businessDescription}
+            onChange={(e) => setBusinessDescription(e.target.value)}
+            disabled={loading}
+            rows={3}
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Dirección</label>
+          <textarea
+            value={businessAddress}
+            onChange={(e) => setBusinessAddress(e.target.value)}
+            disabled={loading}
+            rows={2}
+            className="w-full border border-slate-300 rounded-lg px-3 py-2"
+          />
+        </div>
+
+        {/* SEO Settings */}
+        <div className="border-t border-slate-200 pt-4 mt-4">
+          <h3 className="text-sm font-semibold text-slate-800 mb-3">Configuración SEO</h3>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Título SEO</label>
+              <input
+                type="text"
+                value={seoTitle}
+                onChange={(e) => setSeoTitle(e.target.value)}
+                disabled={loading}
+                placeholder="CALI KIDS | Diseño & muebles infantiles a medida"
+                className="w-full border border-slate-300 rounded-lg px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Descripción SEO</label>
+              <textarea
+                value={seoDescription}
+                onChange={(e) => setSeoDescription(e.target.value)}
+                disabled={loading}
+                rows={3}
+                placeholder="Mobiliario infantil fabricado a medida, 100% en madera. Envíos a todo el Ecuador."
+                className="w-full border border-slate-300 rounded-lg px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Palabras clave SEO (separadas por comas)</label>
+              <textarea
+                value={seoKeywords}
+                onChange={(e) => setSeoKeywords(e.target.value)}
+                disabled={loading}
+                rows={2}
+                placeholder="muebles infantiles, mobiliario infantil a medida, muebles de madera para niños"
+                className="w-full border border-slate-300 rounded-lg px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Imagen Open Graph (1200x630 px)</label>
+              <input
+                type="file"
+                accept="image/*"
+                disabled={loading}
+                onChange={(e) => setSeoOgImageFile(e.target.files?.[0] || null)}
+                className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base file:mr-4 file:rounded-full file:border-0 file:bg-rose-500 file:px-4 file:py-2 file:text-white file:font-semibold disabled:opacity-60"
+              />
+            </div>
+
+            {(settings.seoOgImage || seoOgImagePreview) && (
+              <div className="rounded-xl border border-slate-200 bg-white p-3">
+                <div className="text-xs font-semibold text-slate-600 mb-2">Vista previa imagen OG</div>
+                <div className="relative w-full max-w-md rounded-xl overflow-hidden bg-slate-50 border border-slate-200">
+                  <img 
+                    src={seoOgImagePreview || settings.seoOgImage} 
+                    alt="OG Image" 
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleSave}
+          disabled={loading}
+          className="bg-rose-600 text-white px-4 py-2 rounded-xl font-semibold disabled:opacity-60"
+        >
+          {loading ? "Guardando..." : "Guardar información"}
+        </button>
+
+        {message && (
+          <div className={`text-sm ${message.startsWith("Error") ? "text-red-600" : "text-green-600"}`}>
+            {message}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

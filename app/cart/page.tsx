@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { obtenerBodegas } from "../lib/bodegas-db";
 import { getSnapshotPricing } from "../lib/pricing";
 import { useUser } from "../context/UserContext";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 import BottomBarPublic from "../components/BottomBarPublic";
 import { obtenerAtributos } from "../lib/atributos-db";
 import ModalTransferencia from "../components/ModalTransferencia";
@@ -64,6 +65,7 @@ function resolvePersonalizacionFields(item: any): { nombre: string; valor: strin
 // --- Pagina principal del carrito
 export default function CartPage() {
   const { carrito: carritoRaw, removeCarrito, addCarrito } = useUser();
+  const { settings } = useSiteSettings();
   const carrito = carritoRaw as any[];
   const [error, setError] = useState("");
   const { isLogged } = useUser();
@@ -189,7 +191,7 @@ export default function CartPage() {
     // Si se abre después de un await, el navegador lo bloquea sin avisar.
     const whatsappWindow = window.open("", "_blank");
 
-    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "593995312492";
+    const whatsappNumber = settings.whatsappNumber;
     const message = await generateWhatsAppMessage();
     const url = `https://wa.me/${whatsappNumber}?text=${message}`;
 
@@ -257,7 +259,7 @@ export default function CartPage() {
       </div>
       <a
         href="/products-by-category"
-        className="mt-2 inline-flex items-center gap-2 text-white bg-black border border-white/15 hover:border-red-600 hover:shadow-md font-semibold px-6 py-2.5 rounded-xl transition-colors shadow"
+        className="mt-2 inline-flex items-center gap-2 text-white bg-black border border-white/15 hover:border-[#7B9BC0] hover:shadow-md font-semibold px-6 py-2.5 rounded-xl transition-colors shadow"
       >
         <span className="material-icons-round text-white text-base">storefront</span>
         Ver productos
@@ -302,7 +304,7 @@ export default function CartPage() {
                   return (
                     <div
                       key={itemKey}
-                      className="bg-black rounded-2xl border border-red-500 shadow-sm p-4 flex gap-3 sm:gap-4 items-start"
+                      className="bg-black rounded-2xl border border-[#7B9BC0] shadow-sm p-4 flex gap-3 sm:gap-4 items-start"
                     >
                       <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden bg-[var(--muted)] border border-[var(--border)] flex items-center justify-center">
                         <img
@@ -362,7 +364,7 @@ export default function CartPage() {
                             ${finalPrice.toFixed(2)}
                           </span>
                           {hasDiscount && (
-                            <span className="text-[10px] font-bold bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full">
+                            <span className="text-[10px] font-bold bg-red-100 text-[#375d87] px-1.5 py-0.5 rounded-full">
                               -{discount}%
                             </span>
                           )}
@@ -398,7 +400,7 @@ export default function CartPage() {
                         </span>
                         <button
                           onClick={() => removeCarrito(itemKey)}
-                          className="text-[var(--textSecondary)] hover:text-red-500 transition-colors"
+                          className="text-[var(--textSecondary)] hover:text-[#7B9BC0] transition-colors"
                           title="Eliminar"
                         >
                           <span className="material-icons-round text-xl">delete_outline</span>
@@ -411,7 +413,7 @@ export default function CartPage() {
 
                 <a
                   href="/products-by-category"
-                  className="inline-flex items-center gap-1.5 text-sm text-white hover:text-red-500 hover:underline mt-1 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm text-white hover:text-[#7B9BC0] hover:underline mt-1 transition-colors"
                 >
                   <span className="material-icons-round text-base">arrow_back</span>
                   Continuar comprando
@@ -431,7 +433,7 @@ export default function CartPage() {
                       </div>
 
                     </div>
-                    <div className="border-t border-red-500 mt-3 pt-3 flex justify-between font-bold text-base">
+                    <div className="border-t border-[#7B9BC0] mt-3 pt-3 flex justify-between font-bold text-base">
                       <span className="text-white">Total</span>
                       <span className="text-white">${total.toFixed(2)}</span>
                     </div>
@@ -440,7 +442,7 @@ export default function CartPage() {
                   <div className="space-y-2.5">
                     <button
                       onClick={handleGenerarOrden}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-red-500 hover:bg-red-600 text-white font-extrabold text-sm rounded-xl transition-colors shadow-md"
+                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-[#7B9BC0] hover:bg-[#7B9BC0] text-white font-extrabold text-sm rounded-xl transition-colors shadow-md"
                       title="Enviar pedido por WhatsApp"
                     >
                       <span className="material-icons-round text-base">chat</span>
@@ -449,15 +451,13 @@ export default function CartPage() {
 
                     <button
                       onClick={handleAbrirTransferencia}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-black border border-white/15 hover:border-red-500 text-white font-bold text-sm rounded-xl transition-colors"
+                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-black border border-white/15 hover:border-[#7B9BC0] text-white font-bold text-sm rounded-xl transition-colors"
                       title="Pagar el 30% inicial por transferencia bancaria"
                     >
                       <span className="material-icons-round text-base">account_balance</span>
                       Pagar por Transferencia Bancaria
                     </button>
-                    <p className="text-[11px] text-center text-white/40">
-                      Reserva tu pedido con un 30% inicial. El resto se coordina por WhatsApp.
-                    </p>
+
                   </div>
                 </div>
               </div>

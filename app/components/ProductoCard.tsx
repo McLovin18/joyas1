@@ -42,7 +42,7 @@ const cardStyles = `
   }
 
   .pc-card:hover {
-    border-color: red;
+    border-color: #7B9BC0;
     box-shadow: 0 8px 40px rgba(212,175,55,0.18);
   }
 
@@ -83,7 +83,7 @@ const cardStyles = `
     top: 10px;
     left: 10px;
     z-index: 10;
-    background: red;
+    background: #7B9BC0;
     color: #000000;
     font-family: 'Barlow', sans-serif;
     font-size: 10px;
@@ -112,7 +112,7 @@ const cardStyles = `
     text-transform: uppercase;
     color: #ffffff;
     background: #000000;
-    border: 1px solid red;
+    border: 1px solid #7B9BC0;
     padding: 5px 12px;
     border-radius: 2px;
   }
@@ -142,7 +142,7 @@ const cardStyles = `
   .pc-fav.is-fav {
     opacity: 1;
     transform: scale(1);
-    background: #D4AF37;
+    background: #7B9BC0;
     color: #000000;
   }
 
@@ -227,7 +227,7 @@ const cardStyles = `
   .pc-card:hover .pc-name,
   .pc-card:hover .pc-price-final,
   .pc-card:hover .pc-price-old {
-    color: red;
+    color: #7B9BC0;
   }
 `;
 
