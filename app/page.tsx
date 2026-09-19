@@ -8,6 +8,7 @@ import HomeCategoriesProductsSection from "./components/HomeCategoriesProductsSe
 import { SectionRenderer } from "./landing/sectionRegistry";
 import { getLandingPage } from "./lib/landing-db";
 import { obtenerProductos } from "./lib/productos-db";
+import { obtenerCategorias } from "./lib/categorias-db";
 import type { LandingSection } from "./lib/landing-types";
 import { useUser } from "./context/UserContext";
 
@@ -20,6 +21,7 @@ export default function Home() {
   } | null>(null);
   const [allProducts, setAllProducts] = useState<any[]>([]);
   const [featuredProductsResolved, setFeaturedProductsResolved] = useState<any[]>([]);
+  const [categorias, setCategorias] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,9 +29,10 @@ export default function Home() {
 
     const loadLanding = async () => {
       try {
-        const [data, products] = await Promise.all([
+        const [data, products, cats] = await Promise.all([
           getLandingPage(),
           obtenerProductos(),
+          obtenerCategorias(),
         ]);
 
         // Get all products, sort by newest first, take top 8
@@ -42,6 +45,7 @@ export default function Home() {
           setLanding(data);
           setAllProducts(products || []);
           setFeaturedProductsResolved(recentProducts);
+          setCategorias(cats || []);
         }
       } catch (error) {
         console.error("Error cargando landing publicada:", error);
@@ -49,6 +53,7 @@ export default function Home() {
           setLanding(null);
           setAllProducts([]);
           setFeaturedProductsResolved([]);
+          setCategorias([]);
         }
       } finally {
         if (mounted) {
@@ -93,9 +98,13 @@ export default function Home() {
         const catId = String(product?.categoria || "").trim();
         if (!catId) return null;
 
+        // Find category by ID to get the name
+        const categoria = categorias.find((c: any) => c.id === catId);
+        const categoryName = categoria?.nombre || catId;
+
         return {
           id: catId,
-          title: catId,
+          title: categoryName,
           image: product?.imagenes?.[0] || product?.imagen || null,
           link: `/products-by-category?cat=${encodeURIComponent(catId)}`,
         };
@@ -138,7 +147,7 @@ export default function Home() {
 
       return section;
     });
-  }, [landingSections, featuredProductsResolved]);
+  }, [landingSections, featuredProductsResolved, categorias]);
 
 
     // Detecta el índice del último hero

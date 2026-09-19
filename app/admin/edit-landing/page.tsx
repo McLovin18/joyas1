@@ -23,6 +23,7 @@ import { sectionSchemas } from "../../landing/sectionSchemas";
 import { SectionRenderer } from "../../landing/sectionRegistry";
 
 import { obtenerProductos } from "../../lib/productos-db";
+import { obtenerCategorias } from "../../lib/categorias-db";
 import ProductoCard from "../../components/ProductoCard";
 import DraggablePreviewEditor from "../components/DraggablePreviewEditor";
 
@@ -84,6 +85,7 @@ export default function LandingEditor() {
   const [productos, setProductos] = useState<any[]>([]);
   const [hero, setHero] = useState<any>(null);
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+  const [categorias, setCategorias] = useState<any[]>([]);
   const [sections, setSections] = useState<Section[]>([]);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [addAfterIndex, setAddAfterIndex] = useState<number | null>(null);
@@ -261,9 +263,10 @@ export default function LandingEditor() {
     async function fetchData() {
       setLoading(true);
       try {
-        const [landingData, prods] = await Promise.all([
+        const [landingData, prods, cats] = await Promise.all([
           getLandingDraft(),
           obtenerProductos(),
+          obtenerCategorias(),
         ]);
 
         setHero(landingData?.hero ?? null);
@@ -271,6 +274,7 @@ export default function LandingEditor() {
         // Guardamos todos los productos disponibles (inventario)
         setProductos(prods ?? []);
         setAllProductos(prods ?? []);
+        setCategorias(cats ?? []);
 
         // Obtener productos recientes: todos los productos, ordenados por createdAt (más nuevo primero), top 8
         const allProds = prods ?? [];
@@ -335,6 +339,7 @@ export default function LandingEditor() {
         setProductos([]);
         setAllProductos([]);
         setFeaturedProducts([]);
+        setCategorias([]);
         setSections([]);
       } finally {
         setLoading(false);
@@ -3342,9 +3347,13 @@ export default function LandingEditor() {
                           const catId = String(product?.categoria || "").trim();
                           if (!catId) return null;
 
+                          // Find category by ID to get the name
+                          const categoria = categorias.find((c: any) => c.id === catId);
+                          const categoryName = categoria?.nombre || catId;
+
                           return {
                             id: catId,
-                            title: catId,
+                            title: categoryName,
                             image: product?.imagenes?.[0] || product?.imagen || null,
                             link: `/products-by-category?cat=${encodeURIComponent(catId)}`,
                           };
